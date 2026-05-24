@@ -1,4 +1,25 @@
-/* Reset defaults and setup smooth scrolling */
+/* ==========================================================================
+   1. VARIABLES & RESET
+   ========================================================================== */
+:root {
+    /* Colors */
+    --bg-dark: #030712;
+    --text-light: #f3f4f6;
+    --text-muted: #9ca3af;
+    --accent-primary: #00d2ff;
+    --accent-secondary: #0066ff;
+    
+    /* Backgrounds & Borders */
+    --card-bg: rgba(15, 23, 42, 0.6);
+    --card-bg-hover: rgba(15, 23, 42, 0.8);
+    --border-light: rgba(255, 255, 255, 0.05);
+    --border-accent: rgba(0, 210, 255, 0.3);
+    
+    /* Spacing & Transitions */
+    --section-padding: 6rem 10%;
+    --transition-base: all 0.3s ease;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,12 +29,43 @@
 }
 
 body {
-    background-color: #030712;
-    color: #f3f4f6;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
     overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/* Background animated glow lines */
+/* ==========================================================================
+   2. GLOBAL COMPONENTS & TYPOGRAPHY
+   ========================================================================== */
+section {
+    padding: var(--section-padding);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 3.5rem;
+    position: relative;
+    display: inline-block;
+    color: var(--text-light);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 2px;
+}
+
+/* ==========================================================================
+   3. BACKGROUND ANIMATIONS
+   ========================================================================== */
 .bg-glow-container {
     position: fixed;
     top: 0;
@@ -27,7 +79,7 @@ body {
 
 .glow-line {
     position: absolute;
-    background: linear-gradient(90deg, transparent, #00d2ff, #0066ff, transparent);
+    background: linear-gradient(90deg, transparent, var(--accent-primary), var(--accent-secondary), transparent);
     height: 2px;
     width: 150%;
     opacity: 0.25;
@@ -44,7 +96,9 @@ body {
     100% { transform: translate(-10%, -10%) rotate(-30deg); }
 }
 
-/* Navigation Bar */
+/* ==========================================================================
+   4. NAVIGATION BAR
+   ========================================================================== */
 nav {
     display: flex;
     justify-content: space-between;
@@ -56,46 +110,49 @@ nav {
     top: 0;
     width: 100%;
     z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--border-light);
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     font-size: 1.4rem;
-    font-weight: bold;
-    color: #ffffff;
+    font-weight: 700;
+    color: var(--text-light);
     text-decoration: none;
 }
 
 .logo-icon {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    border: 3px solid #00d2ff;
-    box-shadow: 0 0 10px #0066ff;
+    border: 3px solid var(--accent-primary);
+    box-shadow: 0 0 12px var(--accent-secondary);
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .nav-links a {
-    color: #9ca3af;
+    color: var(--text-muted);
     text-decoration: none;
     font-size: 1rem;
-    transition: color 0.3s, text-shadow 0.3s;
+    font-weight: 500;
+    transition: var(--transition-base);
 }
 
 .nav-links a:hover {
-    color: #00d2ff;
-    text-shadow: 0 0 8px #0066ff;
+    color: var(--accent-primary);
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
 }
 
-/* Hero Section */
+/* ==========================================================================
+   5. HERO SECTION
+   ========================================================================== */
 header {
     min-height: 100vh;
     display: flex;
@@ -107,100 +164,84 @@ header {
 }
 
 .hero-content {
-    max-width: 700px;
-}
-
-.hero-content h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-    background: linear-gradient(to right, #ffffff, #00d2ff, #0066ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    max-width: 750px;
+    margin-top: 4rem; /* Offset for fixed nav */
 }
 
 .hero-subtitle {
     font-size: 1.8rem;
-    color: #00d2ff;
-    margin-bottom: 1.5rem;
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
     font-weight: 600;
 }
 
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #ffffff, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .hero-description {
-    font-size: 1.1rem;
-    color: #9ca3af;
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    max-width: 650px;
 }
 
 .cta-btn {
     display: inline-block;
-    padding: 0.8rem 2.5rem;
-    background: #ffffff;
-    color: #030712;
+    padding: 0.9rem 2.8rem;
+    background: var(--text-light);
+    color: var(--bg-dark);
     font-weight: 600;
     border-radius: 30px;
     text-decoration: none;
-    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    transition: var(--transition-base);
     box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
 }
 
 .cta-btn:hover {
     transform: translateY(-3px);
-    background: #00d2ff;
-    color: #030712;
-    box-shadow: 0 0 20px #0066ff;
+    background: var(--accent-primary);
+    box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
 }
 
-/* Global Section Settings */
-section {
-    padding: 6rem 10%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-}
-
-.section-title {
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    position: relative;
-    display: inline-block;
-    color: #ffffff;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background: linear-gradient(90deg, #00d2ff, #0066ff);
-    border-radius: 2px;
-}
-
-/* About & Education Layout */
+/* ==========================================================================
+   6. ABOUT SECTION
+   ========================================================================== */
 .about-grid {
     display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 3rem;
-    align-items: start;
+    grid-template-columns: 320px 1fr;
+    gap: 4rem;
+    align-items: stretch;
 }
 
 .about-image-box {
     width: 100%;
+    max-width: 320px; /* กำหนดความกว้างสูงสุด รูปจะได้ไม่ใหญ่เกินไปบนจอคอม */
+    margin: 0 auto; /* จัดกึ่งกลางแนวนอน */
+    height: fit-content; /* บังคับให้ความสูงของกล่องพอดีกับตัวรูปภาพเป๊ะๆ */
     border-radius: 16px;
     overflow: hidden;
-    border: 2px solid rgba(0, 210, 255, 0.3);
-    box-shadow: 0 0 20px rgba(0, 102, 255, 0.15);
-    background: rgba(15, 23, 42, 0.6);
+    border: 2px solid var(--border-accent, rgba(0, 210, 255, 0.3));
+    box-shadow: 0 0 25px rgba(0, 102, 255, 0.15);
+    background: var(--card-bg, rgba(15, 23, 42, 0.6));
+    display: flex;
 }
 
 .profile-img {
     width: 100%;
-    height: auto;
+    height: auto; /* ปล่อยให้ความสูงเป็นไปตามสัดส่วนจริงของรูป */
     display: block;
     object-fit: cover;
-    aspect-ratio: 1 / 1;
+    /* เอา aspect-ratio: 1 / 1 ออกไป เพื่อรักษาสัดส่วนรูปแนวตั้งเดิมไว้ */
 }
 
 .about-content {
@@ -210,41 +251,43 @@ section {
 }
 
 .about-box, .edu-box {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
     padding: 2.5rem;
     border-radius: 16px;
     backdrop-filter: blur(8px);
+    height: 100%;
 }
 
 .about-box p {
-    line-height: 1.8; 
-    color: #9ca3af;
+    color: var(--text-muted);
+    font-size: 1.05rem;
 }
 
 .edu-item h3 {
-    color: #00d2ff;
+    color: var(--accent-primary);
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
 }
 
 .edu-item p {
-    color: #9ca3af;
-    line-height: 1.6;
+    color: var(--text-muted);
 }
 
 .edu-date {
     display: inline-block;
-    padding: 0.2rem 0.8rem;
+    padding: 0.3rem 1rem;
     background: rgba(0, 210, 255, 0.1);
-    color: #00d2ff;
+    color: var(--accent-primary);
     border-radius: 20px;
-    font-size: 0.85rem;
-    margin-top: 0.5rem;
-    font-weight: 500;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    font-weight: 600;
 }
 
-/* Skills Section */
+/* ==========================================================================
+   7. SKILLS SECTION
+   ========================================================================== */
 .skills-container {
     display: flex;
     flex-direction: column;
@@ -253,227 +296,389 @@ section {
 
 .skills-category {
     background: rgba(15, 23, 42, 0.4);
-    border-left: 4px solid #00d2ff;
-    padding: 1.5rem 2rem;
-    border-radius: 0 12px 12px 0;
+    border-left: 4px solid var(--accent-primary);
+    padding: 2rem;
+    border-radius: 0 16px 16px 0;
+    transition: var(--transition-base);
+}
+
+.skills-category:hover {
+    background: var(--card-bg);
 }
 
 .skills-category h3 {
-    font-size: 1.1rem;
-    color: #9ca3af;
-    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
 .skills-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
+    gap: 1rem;
 }
 
 .skill-tag {
-    padding: 0.5rem 1.2rem;
-    background: rgba(255, 255, 255, 0.03);
+    padding: 0.6rem 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    font-size: 0.95rem;
+    border-radius: 30px;
+    font-size: 1rem;
     color: #e5e7eb;
-    transition: all 0.3s;
+    transition: var(--transition-base);
 }
 
 .skill-tag:hover {
     background: rgba(0, 102, 255, 0.15);
-    border-color: #00d2ff;
-    color: #00d2ff;
-    box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
-    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    box-shadow: 0 5px 15px rgba(0, 210, 255, 0.2);
+    transform: translateY(-3px);
 }
 
-/* Projects Section */
-.projects-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
+/* ==========================================================================
+   8. PROJECTS SECTION (Horizontal Slider)
+   ========================================================================== */
+.projects-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    padding-bottom: 2rem; /* เพิ่มพื้นที่ด้านล่างไม่ให้ scrollbar ทับการ์ด */
+    scroll-snap-type: x mandatory; /* เปิดระบบดูดการ์ดเวลาเลื่อน */
+    -webkit-overflow-scrolling: touch; /* ทำให้ไถบนมือถือได้ลื่นขึ้น */
+}
+
+/* ตกแต่ง Scrollbar แนวนอนให้เข้ากับธีม */
+.projects-container::-webkit-scrollbar {
+    height: 10px;
+}
+.projects-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 10px;
+    border: 1px solid var(--border-light);
+}
+.projects-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+    border-radius: 10px;
+}
+.projects-container::-webkit-scrollbar-thumb:hover {
+    background: var(--text-light);
 }
 
 .project-card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    /* บนหน้าจอมือถือ/แท็บเล็ต: ให้ความกว้างการ์ดเป็น 85% เพื่อให้เห็นขอบการ์ดถัดไป (บอกใบ้ว่าเลื่อนได้) */
+    flex: 0 0 85%; 
+    max-width: 600px;
+    scroll-snap-align: center; /* เวลาหยุดเลื่อน ให้การ์ดอยู่ตรงกลางเสมอ */
+    
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
     border-radius: 20px;
     padding: 3rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* ดันปุ่มลงไปด้านล่างสุดของการ์ดเสมอ */
 }
 
 .project-card:hover {
-    border-color: rgba(0, 210, 255, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 102, 255, 0.1);
-}
-
-.project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-    gap: 1rem;
+    border-color: var(--border-accent);
+    box-shadow: 0 15px 35px rgba(0, 102, 255, 0.1);
+    background: var(--card-bg-hover);
 }
 
 .project-title {
-    font-size: 1.6rem;
-    color: #ffffff;
+    font-size: 1.5rem;
+    color: var(--text-light);
     font-weight: 700;
-}
-
-.project-date {
-    font-size: 0.9rem;
-    color: #00d2ff;
-    background: rgba(0, 210, 255, 0.1);
-    padding: 0.3rem 1rem;
-    border-radius: 20px;
-    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1.4;
 }
 
 .project-overview {
-    color: #9ca3af;
+    color: var(--text-muted);
     font-size: 1.05rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* ดันเนื้อหาให้เต็มพื้นที่ถ้าข้อความสั้น */
 }
 
-.project-responsibilities h4 {
-    color: #e5e7eb;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+/* สไตล์ลิงก์ GitHub และปุ่ม View Details */
+.project-card-links {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
-.project-responsibilities h4::before {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background: #00d2ff;
-    border-radius: 50%;
-}
-
-.project-responsibilities ul {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.8rem;
-}
-
-.project-responsibilities li {
-    color: #9ca3af;
+.project-git-link {
+    color: var(--text-muted);
+    text-decoration: none;
     font-size: 0.95rem;
-    line-height: 1.5;
-    position: relative;
-    padding-left: 1.2rem;
+    font-weight: 600;
+    transition: var(--transition-base);
+    display: inline-flex;
+    align-items: center;
 }
 
-.project-responsibilities li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: #0066ff;
+.project-git-link:hover {
+    color: var(--accent-primary);
+    text-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
 }
 
 .project-link-btn {
-    display: inline-block;
-    margin-top: 2rem;
-    padding: 0.6rem 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.7rem 1.8rem;
     background: rgba(0, 102, 255, 0.1);
-    border: 1px solid #00d2ff;
-    color: #00d2ff;
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
     border-radius: 30px;
     text-decoration: none;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .project-link-btn:hover {
-    background: #00d2ff;
-    color: #030712;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+    background: var(--accent-primary);
+    color: var(--bg-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
 }
 
-/* Contact Section - UPDATED FOR HORIZONTAL FLOW */
+/* ==========================================================================
+   Responsive for Project Slider
+   ========================================================================== */
+@media (min-width: 1024px) {
+    .project-card {
+        /* บนจอคอมพิวเตอร์ใหญ่ๆ: ให้แสดงประมาณ 2 การ์ดพอดี แล้วมีพื้นที่ให้การ์ดที่ 3 โผล่มานิดนึง */
+        flex: 0 0 calc(50% - 1rem); 
+        scroll-snap-align: start; /* บนจอคอมให้ชิดซ้ายสวยกว่า */
+    }
+}
+
+@media (max-width: 768px) {
+    .project-card {
+        padding: 2rem;
+        flex: 0 0 90%; /* บนมือถือปรับให้กว้างขึ้นอีกนิด */
+    }
+}
+
+/* ==========================================================================
+   9. PROJECT DETAILS PAGE (Sub-pages)
+   ========================================================================== */
+.project-page-body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    padding: 4rem 1.5rem;
+    min-height: 100vh;
+}
+
+.project-page-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-light);
+    padding: 3.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    transition: transform 0.3s;
+}
+
+.back-btn:hover {
+    transform: translateX(-5px);
+}
+
+.project-page-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.project-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem; 
+    margin-top: 0.8rem;
+    margin-bottom: 1.8rem;
+}
+
+.tech-tag {
+    display: inline-block;
+    padding: 0.5rem 1.2rem; 
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    border-radius: 16px; 
+    font-size: 0.9rem; 
+    color: #e5e7eb;
+    font-weight: 500;
+    transition: all 0.2s ease; 
+}
+
+.tech-tag:hover {
+    background: rgba(0, 210, 255, 0.06); 
+    border-color: var(--accent-primary, #00d2ff); 
+    color: var(--accent-primary, #00d2ff);
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 12px rgba(0, 210, 255, 0.15); 
+}
+
+.project-section-heading {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-left: 4px solid var(--accent-secondary);
+    padding-left: 15px;
+}
+
+.project-responsibilities {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.project-responsibilities li {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.project-responsibilities li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent-secondary);
+    font-weight: bold;
+}
+
+.project-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.gallery-img-wrapper {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4b5563;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition-base);
+}
+
+.gallery-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.gallery-img-wrapper:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.15);
+}
+
+.gallery-img-wrapper:hover img {
+    transform: scale(1.02);
+}
+
+/* ==========================================================================
+   10. CONTACT SECTION & FOOTER
+   ========================================================================== */
 .contact-container {
-    max-width: 900px; /* ขยายขนาดความกว้างเพื่อให้วางการ์ดแนวนอนได้พอดี */
+    max-width: 1000px;
     margin: 0 auto;
     text-align: center;
 }
 
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* บังคับให้แบ่งเป็น 3 คอลัมน์เท่าๆ กันในแนวนอน */
-    gap: 1.5rem;
-    margin-top: 3rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
 }
 
 .contact-item {
     background: rgba(15, 23, 42, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 1.5rem;
-    border-radius: 12px;
-    transition: all 0.3s ease;
+    border: 1px solid var(--border-light);
+    padding: 2rem;
+    border-radius: 16px;
+    transition: var(--transition-base);
 }
 
 .contact-item:hover {
-    transform: translateY(-5px);
-    border-color: #00d2ff;
-    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.1);
+    transform: translateY(-8px);
+    border-color: var(--accent-primary);
+    box-shadow: 0 10px 25px rgba(0, 102, 255, 0.15);
+    background: var(--card-bg);
 }
 
 .contact-label {
-    font-size: 0.85rem;
-    color: #00d2ff;
+    font-size: 0.9rem;
+    color: var(--accent-primary);
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
 }
 
 .contact-value {
-    font-size: 1rem;
+    font-size: 1.1rem;
     word-break: break-all;
 }
 
 .contact-value a {
-    color: #ffffff;
+    color: var(--text-light);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: var(--transition-base);
 }
 
 .contact-value a:hover {
-    color: #00d2ff;
+    color: var(--accent-primary);
 }
 
-/* โซน Social ลิงก์มินิมอลแบบข้อความด้านล่างสุด */
 .social-text-links {
-    margin-top: 3.5rem;
-    margin-bottom: 1.5rem;
-    font-size: 1.05rem;
+    margin-top: 4.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
 }
 
 .social-text-links a {
-    color: #9ca3af;
+    color: var(--text-muted);
     text-decoration: none;
-    transition: all 0.3s ease;
-    padding: 0 10px;
+    transition: var(--transition-base);
+    padding: 0 15px;
 }
 
 .social-text-links a:hover {
-    color: #00d2ff;
-    text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+    color: var(--accent-primary);
+    text-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
 }
 
 .social-text-links .divider {
@@ -481,34 +686,65 @@ section {
     user-select: none;
 }
 
-.cv-download-section {
-    margin-top: 2rem;
-}
-
-/* Footer Section */
 footer {
     text-align: center;
-    padding: 2rem;
-    font-size: 0.9rem;
+    padding: 2.5rem;
+    font-size: 0.95rem;
     color: #4b5563;
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    border-top: 1px solid var(--border-light);
+    background-color: var(--bg-dark);
 }
 
-/* Responsive Media Queries */
+/* ==========================================================================
+   11. RESPONSIVE / MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 1024px) {
+    section {
+        padding: 5rem 5%;
+    }
+    .about-grid {
+        gap: 2.5rem;
+    }
+    .hero-content h1 {
+        font-size: 3.2rem;
+    }
+}
+
 @media (max-width: 900px) {
     .contact-grid {
-        grid-template-columns: 1fr; /* บนหน้าจอแท็บเล็ตและมือถือ จะปรับกลับเป็นแนวตั้งเพื่อไม่ให้เบียดกันเกินไป */
-        gap: 1rem;
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
 @media (max-width: 768px) {
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .about-image-box { max-width: 300px; margin: 0 auto; }
+    .about-grid { 
+        grid-template-columns: 1fr; 
+        gap: 2.5rem; 
+    }
+    .about-image-box { 
+        max-width: 320px; 
+        margin: 0 auto; 
+    }
     
-    header h1 { font-size: 2.5rem; }
-    nav { padding: 1rem 5%; }
-    .nav-links { display: none; } 
-    .project-responsibilities ul { grid-template-columns: 1fr; }
-    .project-card { padding: 1.5rem; }
+    .hero-content h1 { font-size: 2.8rem; }
+    .hero-subtitle { font-size: 1.5rem; }
+    
+    nav { padding: 1.2rem 5%; }
+    .nav-links { display: none; /* Consider adding a hamburger menu later */ } 
+    
+    .project-card { padding: 2rem; }
+    .project-page-container { padding: 2rem 1.5rem; }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 { font-size: 2.2rem; }
+    .cta-btn { 
+        display: block; 
+        text-align: center; 
+        margin-right: 0; 
+    }
+    .section-title { font-size: 1.8rem; }
 }

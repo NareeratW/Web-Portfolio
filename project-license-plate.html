@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details | Automatic Thai License Plate Recognition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="project-page-body">
+
+    <div class="project-page-container">
+        <a href="index.html#projects" class="back-btn">&larr; Back to Portfolio</a>
+        
+        <h1 class="project-page-title">Automatic Thai License Plate & Province Recognition System</h1>
+        <p class="project-overview" style="font-size: 1.1rem; line-height: 1.7; color: #9ca3af;">
+            An intelligent Artificial Intelligence system designed to automatically detect, read, and classify Thai vehicle license plates. The system utilizes advanced computer vision and Deep Learning to localize license plates, extract alphanumeric characters, and accurately identify the registered province (supporting 76 provinces) from images or video streams.
+        </p>
+
+        <div class="project-section-heading">Technologies Used</div>
+        <div class="project-tech-stack" style="margin-top: 0; margin-bottom: 2rem;">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">OpenCV</span>
+            <span class="tech-tag">YOLO / Deep Learning</span>
+            <span class="tech-tag">PyTorch / TensorFlow</span>
+            <span class="tech-tag">OCR (Optical Character Recognition)</span>
+        </div>
+
+        <div class="project-section-heading">Key Responsibilities & Features</div>
+        <ul class="project-responsibilities" style="margin-bottom: 2rem;">
+            <li>Developed image preprocessing pipelines using OpenCV to optimize contrast, reduce noise, and handle diverse lighting conditions.</li>
+            <li>Implemented and fine-tuned object detection models (YOLO) to accurately localize license plate regions in complex scenes.</li>
+            <li>Engineered character segmentation and OCR algorithms specialized in recognizing Thai alphabets, digits, and stylized provincial text.</li>
+            <li>Mapped recognized text against dynamic datasets (`province_map.csv` and `vehicle_profiles.yaml`) to automatically classify vehicle usage type (e.g., private car, public transport, or auction plates).</li>
+            <li>Conducted rigorous system evaluation and optimized execution loops for real-time video stream inference.</li>
+            <li>Collaborated with a cross-functional development team utilizing Git and GitHub for structural version control.</li>
+        </ul>
+
+        <div class="project-section-heading">Project Screenshots</div>
+        <div class="project-gallery">
+            <div class="gallery-img-wrapper">
+                <img src="pg/li6.jpg" alt="License Plate Detection Preview 1" onerror="this.style.display='none'; this.parentNode.innerText='[ Plate Localization & Bounding Box Inference ]'">
+            </div>
+            <div class="gallery-img-wrapper">
+                <img src="pg/li2.jpg" alt="License Plate Detection Preview 2" onerror="this.style.display='none'; this.parentNode.innerText='[ Character OCR & Province Classification Dashboard ]'">
+            </div>
+            <div class="gallery-img-wrapper">
+                <img src="pg/li4.jpg" alt="License Plate Detection Preview 3" onerror="this.style.display='none'; this.parentNode.innerText='[ Real-Time Video Stream Inference ]'">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
